@@ -34,12 +34,12 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y build-essential
       - name: Build project using cargo
         run: cargo build --release
-        working-directory: zks-crypto/zks-crypto-c
+        working-directory: zks-crypto/
       - name: Save artifacts
         uses: actions/upload-artifact@v2
         with:
           name: zks-crypto-lib
-          path: zks-crypto/zks-crypto-c/target/release/*zks_crypto.*
+          path: zks-crypto/target/release/*zks_crypto.*
   test:
     name: Test java project
     runs-on: ubuntu-latest

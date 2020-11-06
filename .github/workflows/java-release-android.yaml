@@ -44,12 +44,12 @@ jobs:
         run: mkdir /opt/android-ndk-tmp && cd /opt/android-ndk-tmp && wget -q https://dl.google.com/android/repository/android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64.zip && unzip -q android-ndk-${ANDROID_NDK_VERSION}-linux-x86_64.zip && mv ./android-ndk-${ANDROID_NDK_VERSION} ${ANDROID_NDK_HOME} && cd ${ANDROID_NDK_HOME} && rm -rf /opt/android-ndk-tmp
       - name: Build project using cargo
         run: cargo ndk --platform 21 --target ${{ matrix.cfg.target }} build --release
-        working-directory: zks-crypto/zks-crypto-c
+        working-directory: zks-crypto/
       - name: Save artifacts
         uses: actions/upload-artifact@v2
         with:
           name: zks-crypto-lib-${{ matrix.cfg.name }}
-          path: zks-crypto/zks-crypto-c/target/${{ matrix.cfg.target }}/release/libzks_crypto.so
+          path: zks-crypto/target/${{ matrix.cfg.target }}/release/libzks_crypto.so
   build_and_publish:
     name: Build jar library
     runs-on: ubuntu-latest
